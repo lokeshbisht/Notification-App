@@ -29,9 +29,6 @@ public class SocitiesFragment extends Fragment {
 
     private DatabaseReference societiesRef;
 
-
-
-
     public SocitiesFragment() {
 
     }
@@ -49,8 +46,8 @@ public class SocitiesFragment extends Fragment {
         societiesView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         emptyView = mainView.findViewById(R.id.societiesLayout);
-        societiesView.setEmptyView(emptyView);
 
+        societiesView.setEmptyView(emptyView);
         societiesView.setHasFixedSize(true);
 
         societiesRef = FirebaseDatabase.getInstance().getReference();
@@ -68,7 +65,8 @@ public class SocitiesFragment extends Fragment {
     private void setLayout() {
 
         final FirebaseRecyclerAdapter<Societies, SocietiesViewHolder> societiesRecyclerView = new FirebaseRecyclerAdapter<Societies, SocietiesViewHolder>(
-                Societies.class, R.layout.societies_layout, SocietiesViewHolder.class, societiesRef) {
+                Societies.class, R.layout.societies_layout, SocietiesViewHolder.class, societiesRef
+        ) {
             @Override
             protected void populateViewHolder(SocietiesViewHolder viewHolder, Societies model, int position) {
 

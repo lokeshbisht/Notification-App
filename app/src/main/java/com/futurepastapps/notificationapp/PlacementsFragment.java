@@ -60,8 +60,8 @@ public class PlacementsFragment extends Fragment {
     private void setLayout() {
 
         final FirebaseRecyclerAdapter<Placements, PlacementsViewHolder> placementsRecyclerView = new FirebaseRecyclerAdapter<Placements, PlacementsViewHolder>(
-                Placements.class, R.layout.placements_layout, PlacementsViewHolder.class, placementsRef) {
-
+                Placements.class, R.layout.placements_layout, PlacementsViewHolder.class, placementsRef
+        ) {
             @Override
             protected void populateViewHolder(final PlacementsViewHolder viewHolder, final Placements model, int position) {
 
