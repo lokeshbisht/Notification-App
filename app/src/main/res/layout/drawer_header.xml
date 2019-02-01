@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/drawerMainLayout"
+    android:layout_width="match_parent"
+    android:layout_height="176dp"
+    android:background="@color/societiesColor">
+
+    <RelativeLayout
+        android:id="@+id/drawerLoggedInLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+    <TextView
+        android:id="@+id/headerUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/headerUserImage"
+        android:layout_below="@+id/headerUserImage"
+        android:layout_centerInParent="false"
+        android:text="Username"
+        android:textColor="@android:color/black"
+        android:textSize="20sp"
+        android:layout_alignLeft="@+id/headerUserImage" />
+
+    <TextView
+        android:id="@+id/headerUserEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/headerUsername"
+        android:layout_below="@+id/headerUsername"
+        android:layout_centerInParent="false"
+        android:text="Email"
+        android:textColor="@android:color/black"
+        android:textSize="10sp"
+        android:layout_alignLeft="@+id/headerUserImage" />
+
+    <ImageView
+        android:id="@+id/headerUserImage"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_centerHorizontal="false"
+        android:layout_centerVertical="false"
+        android:layout_marginLeft="24dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="50dp"
+        android:src="@drawable/common_google_signin_btn_icon_dark" />
+
+    </RelativeLayout>
+
+    <Button
+        android:id="@+id/headerSignInButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sign In"
+        android:layout_centerInParent="true" />
+
+</RelativeLayout>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:id="@+id/loggedInGroup"
+        android:visible="false"
+        >
+
+    <item android:id="@+id/mySubscriptions"
+        android:title="My Subscriptions"
+        android:icon="@drawable/myevents"/>
+
+    <item android:id="@+id/logout"
+        android:title="Logout"
+        android:icon="@drawable/notification"/>
+
+    </group>
+
+    <group>
+        <item android:id="@+id/share"
+              android:title="Share" />
+        <item android:id="@+id/rate"
+              android:title="Rate Us" />
+    </group>
+
+
+
+</menu>

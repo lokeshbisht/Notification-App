@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#607D8B</color>
+    <color name="colorPrimaryDark">#455A64</color>
+    <color name="colorAccent">#8f5fd8</color>
+
+    <color name="colorHighlightedText">#010101</color>
+    <color name="colorUnhighlightedText">#b5b7b6</color>
+    <color name="headingText">#010101</color>
+    <color name="colorToolbar">#ffffff</color>
+
+    <color name="societiesColor">#3fa8f9</color>
+    <color name="universityColor">#50bd85</color>
+    <color name="placementsColor">#f2e76d</color>
+    <color name="studentsColor">#f65c64</color>
+</resources>
