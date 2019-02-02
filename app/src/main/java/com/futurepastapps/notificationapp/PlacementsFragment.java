@@ -2,6 +2,7 @@ package com.futurepastapps.notificationapp;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,8 +12,10 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 
 public class PlacementsFragment extends Fragment {
 
@@ -59,13 +62,19 @@ public class PlacementsFragment extends Fragment {
 
     private void setLayout() {
 
-        final FirebaseRecyclerAdapter<Placements, PlacementsViewHolder> placementsRecyclerView = new FirebaseRecyclerAdapter<Placements, PlacementsViewHolder>(
-                Placements.class, R.layout.placements_layout, PlacementsViewHolder.class, placementsRef
-        ) {
-            @Override
-            protected void populateViewHolder(final PlacementsViewHolder viewHolder, final Placements model, int position) {
+        FirebaseRecyclerOptions<Placements> placementsRecyclerOptions = new FirebaseRecyclerOptions.Builder<Placements>().setQuery(placementsRef, Placements.class).build();
 
-                //final String bookName = getRef(position).getKey();
+        final FirebaseRecyclerAdapter<Placements, PlacementsViewHolder> placementsRecyclerView = new FirebaseRecyclerAdapter<Placements, PlacementsViewHolder>(placementsRecyclerOptions) {
+
+            @NonNull
+            @Override
+            public PlacementsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                return null;
+            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull PlacementsViewHolder holder, int position, @NonNull Placements model) {
+
             }
 
             @Override

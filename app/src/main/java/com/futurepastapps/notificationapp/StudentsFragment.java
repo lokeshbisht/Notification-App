@@ -2,6 +2,7 @@ package com.futurepastapps.notificationapp;
 
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -62,11 +64,19 @@ public class StudentsFragment extends Fragment {
 
     private void setLayout() {
 
+        FirebaseRecyclerOptions<Students> studentsRecyclerOptions = new FirebaseRecyclerOptions.Builder<Students>().setQuery(studentsRef, Students.class).build();
+
         final FirebaseRecyclerAdapter<Students, StudentsViewHolder> studentsRecyclerAdapter = new FirebaseRecyclerAdapter<Students, StudentsViewHolder>(
-                Students.class, R.layout.students_layout, StudentsViewHolder.class, studentsRef
+                studentsRecyclerOptions
         ){
+            @NonNull
             @Override
-            protected void populateViewHolder(StudentsViewHolder viewHolder, Students model, int position) {
+            public StudentsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                return null;
+            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull StudentsViewHolder holder, int position, @NonNull Students model) {
 
             }
 
@@ -75,6 +85,9 @@ public class StudentsFragment extends Fragment {
                 super.onDataChanged();
             }
         };
+
+        studentsRecyclerAdapter.notifyDataSetChanged();
+        studentsView.setAdapter(studentsRecyclerAdapter);
     }
 
     public static class StudentsViewHolder extends RecyclerView.ViewHolder {

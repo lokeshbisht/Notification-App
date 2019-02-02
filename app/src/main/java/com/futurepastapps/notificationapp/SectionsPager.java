@@ -18,8 +18,8 @@ public class SectionsPager extends FragmentStatePagerAdapter {
     public Fragment getItem(int position) {
         switch (position) {
             case 0 :
-                SocitiesFragment socitiesFragment = new SocitiesFragment();
-                return socitiesFragment;
+                SocietiesFragment societiesFragment = new SocietiesFragment();
+                return societiesFragment;
             case 1 :
                 UniversityFragment universityFragment = new UniversityFragment();
                 return universityFragment;

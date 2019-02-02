@@ -3,6 +3,7 @@ package com.futurepastapps.notificationapp;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -35,7 +37,7 @@ public class UniversityFragment extends Fragment {
 
         mainView = inflater.inflate(R.layout.fragment_university, container, false);
 
-        mainLayout = mainView.findViewById(R.id.studentsMainLayout);
+        mainLayout = mainView.findViewById(R.id.universityMainLayout);
 
         universityView = mainLayout.findViewById(R.id.universityView);
         universityView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -59,11 +61,19 @@ public class UniversityFragment extends Fragment {
 
     private void setLayout() {
 
+        FirebaseRecyclerOptions<University> universityRecyclerOptions = new FirebaseRecyclerOptions.Builder<University>().setQuery(universityRef, University.class).build();
+
         final FirebaseRecyclerAdapter<University, UniversityViewHolder> universityRecyclerAdapter = new FirebaseRecyclerAdapter<University, UniversityViewHolder>(
-                University.class, R.layout.university_layout, UniversityViewHolder.class, universityRef
+                universityRecyclerOptions
         ) {
+            @NonNull
             @Override
-            protected void populateViewHolder(UniversityViewHolder viewHolder, University model, int position) {
+            public UniversityViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                return null;
+            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull UniversityViewHolder holder, int position, @NonNull University model) {
 
             }
 
@@ -72,6 +82,9 @@ public class UniversityFragment extends Fragment {
                 super.onDataChanged();
             }
         };
+
+        universityRecyclerAdapter.notifyDataSetChanged();
+        universityView.setAdapter(universityRecyclerAdapter);
     }
 
     public static class UniversityViewHolder extends RecyclerView.ViewHolder {

@@ -3,6 +3,7 @@ package com.futurepastapps.notificationapp;
 
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -19,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SocitiesFragment extends Fragment {
+public class SocietiesFragment extends Fragment {
 
     private EmptyRecyclerView societiesView;
 
@@ -29,7 +31,7 @@ public class SocitiesFragment extends Fragment {
 
     private DatabaseReference societiesRef;
 
-    public SocitiesFragment() {
+    public SocietiesFragment() {
 
     }
 
@@ -46,8 +48,8 @@ public class SocitiesFragment extends Fragment {
         societiesView.setLayoutManager(new LinearLayoutManager(getContext()));
 
         emptyView = mainView.findViewById(R.id.societiesLayout);
-
         societiesView.setEmptyView(emptyView);
+
         societiesView.setHasFixedSize(true);
 
         societiesRef = FirebaseDatabase.getInstance().getReference();
@@ -64,11 +66,19 @@ public class SocitiesFragment extends Fragment {
 
     private void setLayout() {
 
+        FirebaseRecyclerOptions<Societies> societiesRecyclerOptions = new FirebaseRecyclerOptions.Builder<Societies>().setQuery(societiesRef, Societies.class).build();
+
         final FirebaseRecyclerAdapter<Societies, SocietiesViewHolder> societiesRecyclerView = new FirebaseRecyclerAdapter<Societies, SocietiesViewHolder>(
-                Societies.class, R.layout.societies_layout, SocietiesViewHolder.class, societiesRef
-        ) {
+                societiesRecyclerOptions) {
+
+            @NonNull
             @Override
-            protected void populateViewHolder(SocietiesViewHolder viewHolder, Societies model, int position) {
+            public SocietiesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                return null;
+            }
+
+            @Override
+            protected void onBindViewHolder(@NonNull SocietiesViewHolder holder, int position, @NonNull Societies model) {
 
             }
 
@@ -77,6 +87,9 @@ public class SocitiesFragment extends Fragment {
                 super.onDataChanged();
             }
         };
+
+        societiesRecyclerView.notifyDataSetChanged();
+        societiesView.setAdapter(societiesRecyclerView);
     }
 
     public static class SocietiesViewHolder extends RecyclerView.ViewHolder {
